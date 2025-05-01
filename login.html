@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login</title>
+    
+</head>
+
+<body>
+    <div class="con">
+        <h1>Login</h1>
+
+        <form>
+            <div class="data">
+                <label for="email">Email</label>
+                <input type="email" id="email" required placeholder="ex@gmail.com">
+            </div>
+
+            <div class="data">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <div class="forg">
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button id="loginBtn" type="submit">Enter</button>
+        </form>
+
+        <br>
+
+        <div>
+            <button type="button">
+                <a href="index.html" style="color: aliceblue; text-decoration: none;"> return </a>
+            </button>
+        </div>
+
+        <div class="re">
+            <a href="register.html">
+                Don't have an account?
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // التحقق من كلمة المرور فقط واهتزاز الحقل إذا كانت غير صالحة
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // منع الإرسال الافتراضي
+
+            const passwordInput = document.getElementById("password");
+            const passwordValue = passwordInput.value;
+
+            const hasLetter = /[a-zA-Z]/.test(passwordValue);
+            const hasNumber = /[0-9]/.test(passwordValue);
+
+            if (!hasLetter || !hasNumber) {
+                passwordInput.classList.add("shake");
+                setTimeout(() => {
+                    passwordInput.classList.remove("shake");
+                }, 300);
+                return;
+            }
+
+            // هنا يتم إرسال البيانات أو إظهار رسالة نجاح تجريبية
+            alert("تم التحقق من كلمة المرور بنجاح.");
+        });
+    </script>
+</body>
+
+</html>
